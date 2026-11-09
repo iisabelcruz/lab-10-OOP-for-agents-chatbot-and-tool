@@ -2,14 +2,20 @@
 # Author: Isabel Cruz
 
 from chatbot import SupportChatbot
+from mock_model import MockModel
 from order_tool import OrderLookup
 from stock_tool import StockLookup
 
+model = MockModel()
 order_tool = OrderLookup({"A100": "shipped", "A101": "processing"})
 stock_tool = StockLookup({"rain jacket": 12, "day pack": 0})
 
-sunny = SupportChatbot("Sunny", "You are cheeful and brief.", order_tool, stock_tool)
-river = SupportChatbot("River", "You are formal and detailed.", order_tool, stock_tool)
+sunny = SupportChatbot(
+    "Sunny", "You are cheeful and brief.", order_tool, stock_tool, model
+)
+river = SupportChatbot(
+    "River", "You are formal and detailed.", order_tool, stock_tool, model
+)
 
 sunny.respond("hello")
 sunny.respond("Where is order A100?")
